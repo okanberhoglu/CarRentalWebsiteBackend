@@ -40,7 +40,7 @@ namespace ConsoleUI
 
             foreach (var car in carManager.GetCarDetails())
             {
-                Console.WriteLine("{0} id li araba {1} dir",car.CarId,car.BrandName);
+                Console.WriteLine("{0} id li araba {1} dir. {2} renklidir.",car.CarId,car.BrandName,car.ColorName);
             }
         }
     }

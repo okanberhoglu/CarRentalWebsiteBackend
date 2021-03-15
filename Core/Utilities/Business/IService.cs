@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.Business
+namespace Core.Utilities.Business
 {
     public interface IService<T> where T: class,IEntity,new()
     {

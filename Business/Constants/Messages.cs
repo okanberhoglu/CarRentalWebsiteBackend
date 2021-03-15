@@ -15,6 +15,8 @@ namespace Business.Constants
         public static string BrandAdded = "Marka eklendi";
         public static string BrandUpdated = "Marka güncellendi";
         public static string BrandDeleted = "Marka silindi";
+        public static string BrandNameAlreadyExists = "Bu marka zaten var lütfen farklı bir marka girirşi yapınız";
+        public static string BrandNameIsNotExists = "Bu marka listede yok";
 
         public static string ColorListed = "Renkler listelendi";
         public static string ColorAdded = "Renk eklendi";
@@ -35,6 +37,6 @@ namespace Business.Constants
         public static string RentalAdded = "Kiralayan eklendi";
         public static string RentalUpdated = "Kiralayan güncellendi";
         public static string RentalDeleted = "Kiralayan silindi";
-
+        
     }
 }

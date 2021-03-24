@@ -2,6 +2,7 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -22,6 +23,7 @@ namespace Business.Concrete
         }
         [SecuredOperation("admin")]
         [ValidationAspect(typeof(BrandValidator))]
+        [CacheRemoveAspect("IBrandService.Get")]
         public IResult Add(Brand brand)
         {
             var result = BusinessRules.Run(CheckIfBrandNameExists(brand.BrandName));
@@ -34,6 +36,7 @@ namespace Business.Concrete
         }
         [SecuredOperation("admin")]
         [ValidationAspect(typeof(BrandValidator))]
+        [CacheRemoveAspect("IBrandService.Get")]
         public IResult Delete(Brand brand)
         {
             var result = BusinessRules.Run(CheckIfBrandNameExists(brand.BrandName));
@@ -44,7 +47,7 @@ namespace Business.Concrete
             _brandDal.Delete(brand);
             return new SuccessResult(Messages.BrandDeleted);
         }
-
+        [CacheAspect]
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>>( _brandDal.GetAll(),Messages.BrandsListed);
@@ -56,6 +59,7 @@ namespace Business.Concrete
         }
         [SecuredOperation("admin")]
         [ValidationAspect(typeof(BrandValidator))]
+        [CacheRemoveAspect("IBrandService.Get")]
         public IResult Update(Brand brand)
         {
             var result = BusinessRules.Run(CheckIfBrandNameExists(brand.BrandName));

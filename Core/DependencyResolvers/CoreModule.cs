@@ -1,11 +1,13 @@
-﻿using Core.Utilities.Ioc;
+﻿using Core.CrossCuttngConcerns.Caching;
+using Core.CrossCuttngConcerns.Caching.Microsoft;
+using Core.Utilities.Ioc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using WebGrease;
+
 
 namespace Core.DependencyResolvers
 {
@@ -13,8 +15,8 @@ namespace Core.DependencyResolvers
     {
         public void Load(IServiceCollection services)
         {
-            services.AddMemoryCache();
-            //services.AddSingleton<ICacheManager, MemoryCacheManager>();
+            services.AddMemoryCache();//IMemoryCache'in(MemoryCacheManager'da) karşılığı bu oluyor. 
+            services.AddSingleton<ICacheManager, MemoryCacheManager>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<Stopwatch>();
         }

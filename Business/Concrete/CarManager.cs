@@ -57,12 +57,21 @@ namespace Business.Concrete
         }
         [CacheAspect]
         public IDataResult<List<Car>> GetAll()
-        {
-            //Is kodları..
-            
+        { 
+
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
         }
-        
+
+        public IDataResult<List<CarDetailDto>> GetByBrandId(int id)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarsDetails(c => c.BrandId == id));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetByColorId(int id)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarsDetails(c => c.ColorId == id));
+        }
+
         public IDataResult<List<Car>> GetByDailyPrice(decimal min, decimal max)
         {
 
@@ -92,6 +101,17 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.CarIsTooOld);
             }
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfCarsExist(int id)
+        {
+            var result = _carDal.GetAll(c => c.BrandId == id || c.ColorId == id).Count;
+            if (result == 0)
+            {
+                return new ErrorResult();
+            }
+
             return new SuccessResult();
         }
     }

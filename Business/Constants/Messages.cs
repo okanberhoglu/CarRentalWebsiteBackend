@@ -47,5 +47,11 @@ namespace Business.Constants
         public static string UserAlreadyExists = "Kullanıcı zaten var";
         public static string AccessTokenCreated = "Giriş token ı oluşturuldu";
         public static string CarIsTooOld = "Araba çok eski";
+
+        public static string ImageLimitExceed = "Resim sayısı için 5 limiti aşıldı";
+        public static string ImageAdded = "Resim eklendi";
+        public static string ImageDeleted = "Resim silindi";
+        public static string ImageUpdated = "Resim güncellendi";
+        public static string NoCarOnTheList = "Listede Araba yok";
     }
 }
